@@ -1,34 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Enemy : MonoBehaviour
+public void Hurt(int damageAmount)
 {
-    void Start()
+    currentHealth -= damageAmount;
+    if (currentHealth <= 0)
     {
-        
+        Die();
     }
-
-    void Update()
+    else
     {
-        
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            ContactPoint2D[] listContacts = new ContactPoint2D[1];
-            other.GetContacts(listContacts);
-
-            if (listContacts[0].normal.y < -0.5f)
-            {
-                Destroy(gameObject);
-            }
-            else
-            {
-                Debug.Log("C'est le joueur qui m'a touché !");
-            }
-        }
+        // Autre logique de gestion des dégâts, comme la mise à jour de l'interface utilisateur de la santé, etc.
     }
 }
